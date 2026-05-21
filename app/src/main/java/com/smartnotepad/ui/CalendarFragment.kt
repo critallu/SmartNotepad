@@ -13,6 +13,7 @@ import android.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,7 +72,7 @@ class CalendarFragment : Fragment() {
         for (day in weekDays) {
             val tv = TextView(requireContext()).apply {
                 text = day
-                gravity = View.Gravity.CENTER
+                gravity = Gravity.CENTER
                 textSize = 14f
                 setTextColor(resources.getColor(R.color.gray_medium, null))
                 layoutParams = ViewGroup.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -141,7 +142,7 @@ class CalendarFragment : Fragment() {
 
             val tv = TextView(requireContext()).apply {
                 text = day.toString()
-                gravity = View.Gravity.CENTER
+                gravity = Gravity.CENTER
                 textSize = 16f
                 setPadding(8, 8, 8, 8)
 
