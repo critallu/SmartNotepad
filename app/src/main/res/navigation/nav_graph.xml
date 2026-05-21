@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.smartnotepad.ui.HomeFragment"
+        android:label="@string/nav_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="com.smartnotepad.ui.ScheduleFragment"
+        android:label="@string/nav_schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.smartnotepad.ui.CalendarFragment"
+        android:label="@string/nav_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/navigation_countdown"
+        android:name="com.smartnotepad.ui.CountdownFragment"
+        android:label="@string/nav_countdown"
+        tools:layout="@layout/fragment_countdown" />
+
+    <fragment
+        android:id="@+id/navigation_notes"
+        android:name="com.smartnotepad.ui.NotesFragment"
+        android:label="@string/nav_notes"
+        tools:layout="@layout/fragment_notes" />
+
+</navigation>
