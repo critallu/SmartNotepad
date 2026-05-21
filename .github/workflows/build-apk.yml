@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,9 +24,14 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Generate Gradle Wrapper
+      - name: Install Gradle
         run: |
-          gradle wrapper --gradle-version 8.5
+          wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
+          unzip -q gradle-8.5-bin.zip
+          echo "$(pwd)/gradle-8.5/bin" >> $GITHUB_PATH
+
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper --gradle-version 8.5
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
