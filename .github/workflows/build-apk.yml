@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CI: true
 
     steps:
       - name: Checkout code
@@ -34,15 +36,26 @@ jobs:
           gradle-version: 8.5
 
       - name: Build Debug APK
-        run: gradle :app:assembleDebug
+        run: |
+          set -o pipefail
+          gradle --no-daemon :app:assembleDebug --stacktrace --info 2>&1 | tee build.log
 
       - name: Locate APK
         run: |
           find app/build/outputs -type f -name "*.apk" -print
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: SmartNotepad-Debug-APK
           path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Upload Build Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SmartNotepad-Build-Log
+          path: build.log
           if-no-files-found: error
