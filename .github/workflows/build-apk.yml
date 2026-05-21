@@ -24,19 +24,19 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Build Debug APK
-        run: ./gradlew :app:assembleDebug
+        run: gradle :app:assembleDebug
 
       - name: Locate APK
         run: |
-          find . -type f -name "*.apk" -print
+          find app/build/outputs -type f -name "*.apk" -print
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: SmartNotepad-Debug-APK
-          path: "**/*.apk"
+          path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
